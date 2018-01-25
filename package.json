@@ -1,0 +1,19 @@
+{
+  "name": "tdoos-redesign",
+  "version": "1.0.0",
+  "description": "This is a JavaScript project to redesign [The Dictionary of Obscure Sorrows](http://www.dictionaryofobscuresorrows.com/). I plan to use a web scraper to retrieve the content, and redesign the front-end as a single page application using React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterwdj/tdoos-redesign.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterwdj/tdoos-redesign/issues"
+  },
+  "homepage": "https://github.com/peterwdj/tdoos-redesign#readme"
+}
