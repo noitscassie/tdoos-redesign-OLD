@@ -8,7 +8,7 @@ var app = express();
 
 app.get('/scrape', function(req, res) {
 
-  url = 'http://www.dictionaryofobscuresorrows.com/page/2';
+  var url = 'http://www.dictionaryofobscuresorrows.com/page/10';
 
   request(url, function(error, response, html) {
     if(!error) {
@@ -16,20 +16,25 @@ app.get('/scrape', function(req, res) {
       var entry, definition;
       var json = { entry : "", definition : "" };
 
-      $('.post.text.title').filter(function() {
+      $('#wrapper > #page > #pageInner > .post.text > .title').filter(function() {
         var data = $(this);
         entry = data.text();
-        console.log(definition);
+        json.entry = entry;
       });
 
-      $('.post.text.content').filter(function() {
+      $('#wrapper > #page > #pageInner > .post.text > .content').filter(function() {
         var data = $(this);
         definition = data.text();
-        console.log(definition);
+        json.definition = definition;
       });
     };
+    fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
+      console.log('File successfully written!');
+    });
   });
 
+
+  res.send('Check your console!');
 });
 
 app.listen('8000');
