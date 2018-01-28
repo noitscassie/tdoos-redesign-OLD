@@ -1,5 +1,7 @@
 # TDOOS Redesign
 
-This is a JavaScript project to redesign [The Dictionary of Obscure Sorrows](http://www.dictionaryofobscuresorrows.com/). I plan to use a web scraper to retrieve the content, and redesign the front-end as a single page application using React.
+This is a JavaScript project to redesign [The Dictionary of Obscure Sorrows](http://www.dictionaryofobscuresorrows.com/). This is a website full of gorgeous, somewhat esoteric words that deserve a more beautiful place than a Tumblr blog.
 
-Written using the help of this webscraper tutorial: https://scotch.io/tutorials/scraping-the-web-with-node-js
+This project will be built as a single-page application using the MERN stack - [MongoDB](https://www.mongodb.com/), [Express](https://expressjs.com/), [React](https://reactjs.org/), and [Node](https://nodejs.org/en/). I will make use of a webscraper to retrieve the content for the application.
+
+Currently, there is a web scraper built using [CheerioJS](https://cheerio.js.org/) and Node, by adapting [this tutorial](https://scotch.io/tutorials/scraping-the-web-with-node-js). Functionality is currently limited to simply finding the final entry and definition on a predefined page of the original blog, but will be expanded in the near future.
