@@ -16,17 +16,32 @@ app.get('/scrape', function(req, res) {
       var entry, definition;
       var json = { entry : "", definition : "" };
 
-      $('#wrapper > #page > #pageInner > .post.text > .title').filter(function() {
-        var data = $(this);
-        entry = data.text();
-        json.entry = entry;
-      });
+      function getWord() {
+        $('.post.text > .title').filter(function() {
+          var data = $(this);
+          entry = data.text();
+          json.entry = entry;
+          console.log(entry);
+        });
+      };
 
-      $('#wrapper > #page > #pageInner > .post.text > .content').filter(function() {
-        var data = $(this);
-        definition = data.text();
-        json.definition = definition;
-      });
+      function getDefinition() {
+        $('.post.text > .content').filter(function() {
+          var data = $(this);
+          definition = data.text();
+          json.definition = definition;
+          console.log(definition);
+        });
+      };
+
+      function getEntry(word, definition) {
+        word();
+        definition();
+      }
+
+      getEntry(getWord, getDefinition);
+
+
     };
     fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
       console.log('File successfully written!');
