@@ -9,4 +9,4 @@ function getWord($, json) {
   });
 }
 
-module.exports = getWord;
+module.exports.getWord = getWord;
