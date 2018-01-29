@@ -2,9 +2,12 @@
 
 var express = require('express');
 var request = require('request');
+var getWord = require('./scraper.js');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var app = express();
+
+// require('scraper.js');
 
 app.get('/scrape', function(req, res) {
 
@@ -16,26 +19,24 @@ app.get('/scrape', function(req, res) {
       var entry, definition;
       var json = { entry : "", definition : "" };
 
-      function getWord() {
-        $('.post.text > .title').filter(function() {
-          var data = $(this);
-          entry = data.text();
-          json.entry = entry;
-          console.log(entry);
-        });
-      };
+      // function getWord() {
+      //   $('.post.text > .title').filter(function() {
+      //     var data = $(this);
+      //     entry = data.text();
+      //     json.entry = entry;
+      //   });
+      // };
 
       function getDefinition() {
         $('.post.text > .content').filter(function() {
           var data = $(this);
           definition = data.text();
           json.definition = definition;
-          console.log(definition);
         });
       };
 
       function getEntry(word, definition) {
-        word();
+        word($, json);
         definition();
       }
 
