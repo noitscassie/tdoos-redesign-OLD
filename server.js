@@ -7,8 +7,6 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var app = express();
 
-// require('scraper.js');
-
 app.get('/scrape', function(req, res) {
 
   var url = 'http://www.dictionaryofobscuresorrows.com/page/10';
@@ -18,14 +16,6 @@ app.get('/scrape', function(req, res) {
       var $ = cheerio.load(html)
       var entry, definition;
       var json = { entry : "", definition : "" };
-
-      // function getDefinition() {
-      //   $('.post.text > .content').filter(function() {
-      //     var data = $(this);
-      //     definition = data.text();
-      //     json.definition = definition;
-      //   });
-      // };
 
       function getEntry(word, definition) {
         word($, json);
