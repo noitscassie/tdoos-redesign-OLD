@@ -20,11 +20,9 @@ app.get('/scrape', function(req, res) {
       function getEntry(word, definition) {
         word($, json);
         definition($, json);
-      }
-
+      };
+      
       getEntry(scraper.getWord, scraper.getDefinition);
-
-
     };
     fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
       console.log('File successfully written!');
