@@ -19,20 +19,20 @@ app.get('/scrape', function(req, res) {
       var entry, definition;
       var json = { entry : "", definition : "" };
 
-      function getDefinition() {
-        $('.post.text > .content').filter(function() {
-          var data = $(this);
-          definition = data.text();
-          json.definition = definition;
-        });
-      };
+      // function getDefinition() {
+      //   $('.post.text > .content').filter(function() {
+      //     var data = $(this);
+      //     definition = data.text();
+      //     json.definition = definition;
+      //   });
+      // };
 
       function getEntry(word, definition) {
         word($, json);
-        definition();
+        definition($, json);
       }
 
-      getEntry(scraper.getWord, getDefinition);
+      getEntry(scraper.getWord, scraper.getDefinition);
 
 
     };
