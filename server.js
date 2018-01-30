@@ -14,15 +14,7 @@ app.get('/scrape', function(req, res) {
   request(url, function(error, response, html) {
     if(!error) {
       var $ = cheerio.load(html)
-      var entry, definition;
-      var json = { entry : "", definition : "" };
-
-      function getEntry(word, definition) {
-        word($, json);
-        definition($, json);
-      };
-      
-      getEntry(scraper.getWord, scraper.getDefinition);
+      var json = scraper.getEntry($, scraper.getWord, scraper.getDefinition);
     };
     fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
       console.log('File successfully written!');

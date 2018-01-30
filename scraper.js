@@ -4,8 +4,8 @@ var fs = require('fs');
 function getWord($, json) {
   $('.post.text > .title').filter(function() {
     var data = $(this);
-    entry = data.text();
-    json.entry = entry;
+    word = data.text();
+    json.word = word;
   });
 };
 
@@ -17,5 +17,13 @@ function getDefinition($, json) {
   });
 };
 
+function getEntry($, word, definition) {
+  var json = { word : "", definition : "" };
+  word($, json);
+  definition($, json);
+  return json;
+}
+
 module.exports.getWord = getWord;
 module.exports.getDefinition = getDefinition;
+module.exports.getEntry = getEntry;
