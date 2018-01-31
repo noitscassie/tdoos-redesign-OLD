@@ -1,22 +1,20 @@
 var cheerio = require('cheerio');
 
-function scrapeWord(entry, json) {
+function getWord(entry, json) {
   var word = entry.children('.title').text();
   json.word = word;
 }
 
-function scrapeDefinition(entry, json) {
+function getDefinition(entry, json) {
   var definition = entry.children('.content').text();
   json.definition = definition;
 }
 
-function scrapeEntry(entry) {
+function scrape(entry) {
   var json = { word : "", definition : "" };
-  scrapeWord(entry, json);
-  scrapeDefinition(entry, json);
+  getWord(entry, json);
+  getDefinition(entry, json);
   return json
 }
 
-module.exports.scrapeWord = scrapeWord;
-module.exports.scrapeDefinition = scrapeDefinition;
-module.exports.scrapeEntry = scrapeEntry;
+module.exports.scrape = scrape;
