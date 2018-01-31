@@ -17,10 +17,7 @@ app.get('/scrape', function(req, res) {
       var entries = []
       $('.post.text').each(function() {
         if ($(this).children().length == 4) {
-          var json = { word : "", definition : "" };
-          json.word = $(this).children('.title').text();
-          json.definition = $(this).children('.content').text();
-          entries.push(json);
+          entries.push(scraper.scrapeEntry($(this)));
         };
       });
       console.log(entries);
