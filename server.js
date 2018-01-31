@@ -4,7 +4,9 @@ var express = require('express');
 var request = require('request');
 var scraper = require('./scraper');
 var cheerio = require('cheerio');
+var mongo = require('mongodb');
 var app = express();
+
 const TOTAL_PAGES = 17;
 
 app.get('/scrape', function(req, res) {
