@@ -13,19 +13,19 @@ app.get('/scrape', function(req, res) {
 
   request(url, function(error, response, html) {
     if(!error) {
-      var $ = cheerio.load(html)
-      var json = scraper.getEntry($, scraper.getWord, scraper.getDefinition);
+      var $ = cheerio.load(html);
+      var entries = []
       $('.post.text').each(function() {
         if ($(this).children().length == 4) {
-          console.log($(this).children('.title').text());
+          var json = { word : "", definition : "" };
+          json.word = $(this).children('.title').text();
+          json.definition = $(this).children('.content').text();
+          entries.push(json);
         };
       });
+      console.log(entries);
     };
-    fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
-      console.log('File successfully written!');
-    });
   });
-
 
   res.send('Check your console!');
 });
