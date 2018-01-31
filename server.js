@@ -5,25 +5,25 @@ var request = require('request');
 var scraper = require('./scraper');
 var cheerio = require('cheerio');
 var app = express();
+const TOTAL_PAGES = 17;
 
 app.get('/scrape', function(req, res) {
-
-  var url = 'http://www.dictionaryofobscuresorrows.com/page/10';
-
-  request(url, function(error, response, html) {
-    if(!error) {
-      var $ = cheerio.load(html);
-      var entries = []
-      $('.post.text').each(function() {
-        var entry = $(this);
-        if (entry.children().length == 4) {
-          entries.push(scraper.scrape(entry));
-        };
-      });
-      console.log(entries);
-    };
-  });
-
+  for (var page = 1; page <= TOTAL_PAGES; page ++) {
+    var url = 'http://www.dictionaryofobscuresorrows.com/page/' + page;
+    request(url, function(error, response, html) {
+      if(!error) {
+        var $ = cheerio.load(html);
+        var entries = []
+        $('.post.text').each(function() {
+          var entry = $(this);
+          if (entry.children().length == 4) {
+            entries.push(scraper.scrape(entry));
+          };
+        });
+        console.log(entries);
+      };
+    });
+  }
   res.send('Check your console!');
 });
 
