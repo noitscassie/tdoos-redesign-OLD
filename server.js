@@ -4,8 +4,9 @@ var express = require('express');
 var request = require('request');
 var scraper = require('./scraper');
 var cheerio = require('cheerio');
-var mongo = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
 var app = express();
+var dburl = "mongodb://localhost:27017/obscure_sorrows";
 
 const TOTAL_PAGES = 17;
 
@@ -20,9 +21,12 @@ app.get('/scrape', function(req, res) {
           var entry = $(this);
           if (entry.children().length == 4) {
             entries.push(scraper.scrape(entry));
+            MongoClient.connect(dburl, function(err, db) {
+              if (err) throw err;
+              db.close();
+            });
           };
         });
-        console.log(entries);
       };
     });
   }
